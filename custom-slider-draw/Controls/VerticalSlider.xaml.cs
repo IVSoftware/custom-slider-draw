@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace custom_slider_draw.Controls;
 
 public partial class VerticalSlider : Grid
@@ -5,11 +7,17 @@ public partial class VerticalSlider : Grid
     public VerticalSlider()
     {
         InitializeComponent();
-        SizeChanged += (sender, e) =>
+        PropertyChanged += (sender, e) =>
         {
-            slider.WidthRequest = Height - Margin.VerticalThickness;
-            slider.HeightRequest = Width - Margin.HorizontalThickness;
+            switch (e.PropertyName)
+            {
+                case nameof(Margin):
+                    OnContainerSizeChanged(this, EventArgs.Empty);
+                    break;
+            }
         };
+        SizeChanged += OnContainerSizeChanged;
+
         slider.Focused += (sender, e) =>
         {
             if (sender is Slider slider)
@@ -18,6 +26,19 @@ public partial class VerticalSlider : Grid
             }
         };
     }
+
+    private void OnContainerSizeChanged(object? sender, EventArgs e)
+    {
+        var width = Width == -1
+            ? WidthRequest
+            : Width;
+        var height = Height == -1
+            ? HeightRequest
+            : Height;
+        slider.WidthRequest = height - Margin.VerticalThickness;
+        slider.HeightRequest = width - Margin.HorizontalThickness;
+    }
+
     public static readonly BindableProperty ValueProperty =
             BindableProperty.Create(
                 nameof(Value),
