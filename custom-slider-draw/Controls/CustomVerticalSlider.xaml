@@ -63,7 +63,7 @@
         <controls:VerticalSlider.Margin>
             <OnPlatform x:TypeArguments="Thickness">
                 <On Platform="Android" Value="0,15"/>
-                <On Platform="WinUI" Value="0,20"/>
+                <On Platform="WinUI" Value="0,30"/>
             </OnPlatform>
         </controls:VerticalSlider.Margin>
     </controls:VerticalSlider>

@@ -224,7 +224,7 @@ Once the basic slider is behaving, you can more easily go about a customized ver
         <controls:VerticalSlider.Margin>
             <OnPlatform x:TypeArguments="Thickness">
                 <On Platform="Android" Value="0,15"/>
-                <On Platform="WinUI" Value="0,20"/>
+                <On Platform="WinUI" Value="0,30"/>
             </OnPlatform>
         </controls:VerticalSlider.Margin>
     </controls:VerticalSlider>
@@ -256,8 +256,6 @@ Now use the `CustomVerticalSlider` on the main page to test (this might not be "
     </Grid>
 </ContentPage>
 ~~~
+[![platform screenshots][2]][2]
 
-[![platform screenshots][1]][1]
-
-
-  [1]: https://i.sstatic.net/AykKYG8J.png
+  [2]: https://i.sstatic.net/719ZSseK.png
